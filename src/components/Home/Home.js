@@ -1,7 +1,11 @@
 import Carousel from '../Carousel/Carousel'
 import Categories from '../Categories/Categories'
+import Companies from '../Companies/Companies'
 import Featured from '../Featured/Featured'
 import NewArrival from '../NewArrival/NewArrival'
+import Popular from '../Popular/Popular'
+import SummerCollection from '../SummerCollection/SummerCollection'
+import WhyChooseUs from '../WhyChooseUs/WhyChooseUs'
 import './Home.css'
 
 const Home = () => {
@@ -29,6 +33,10 @@ const Home = () => {
             <Categories />
             <NewArrival />
             <Featured />
+            <SummerCollection />
+            <Popular />
+            <WhyChooseUs />
+            <Companies />
         </section>
     )
 }
