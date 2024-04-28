@@ -1,0 +1,51 @@
+#landing {
+  width: 100vw;
+  height: 90vh;
+  display: flex;
+}
+#landing-left-side {
+  width: 35%;
+  height: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  color: #393d46;
+}
+#inner-landing-left-side {
+  width: 90%;
+  height: 90%;
+}
+#heading {
+  font-family: Georgia, "Times New Roman", Times, serif;
+  /* font-style: italic; */
+  width: 90%;
+  font-size: 5vw;
+  font-weight: lighter;
+  line-height: 5vw;
+}
+#sub-heading {
+  width: 90%;
+  font-size: 3vw;
+  font-weight: 900;
+}
+#inner-landing-left-side p {
+  width: 90%;
+  padding-block: 2vw;
+}
+#inner-landing-left-side button {
+  outline: none;
+  border: none;
+  background-color: #393d46;
+  color: #fff;
+  font-size: 1.5vw;
+  padding: 0.5vw 2vw;
+  cursor: pointer;
+}
+#landing-right-side {
+  width: 65%;
+  height: 100%;
+  /* background-color: orange; */
+}
+.carousel-item {
+  background-color: orange;
+}

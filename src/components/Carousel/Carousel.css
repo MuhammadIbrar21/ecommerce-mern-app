@@ -1,0 +1,31 @@
+.card {
+  height: 84vh;
+  box-shadow: none;
+}
+.text-center {
+  text-align: center;
+}
+.surface-border {
+  border-radius: 30px;
+}
+.mb-3 {
+  margin-top: 10px;
+}
+.success {
+  padding: 0.5vw 1.5vw;
+  font-size: 1.3vw;
+  color: #fff;
+  background-color: goldenrod;
+}
+.warning {
+  padding: 0.5vw 1.5vw;
+  font-size: 1.3vw;
+  color: #fff;
+  background-color: #f97316;
+}
+.danger {
+  padding: 0.5vw 1.5vw;
+  font-size: 1.3vw;
+  color: #fff;
+  background-color: #ef4444;
+}
