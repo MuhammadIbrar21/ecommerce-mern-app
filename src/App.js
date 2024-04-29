@@ -8,8 +8,13 @@ import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import ProductDetails from './components/ProductDetails/ProductDetails';
 import Cart from './components/Cart/Cart';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import CategoriesPage from './components/CategoriesPage/CategoriesPage';
+import { RequiredAuth } from './components/RequiredAuth/RequiredAuth';
 
 function App() {
+
   return (
     <div id='body'>
       <BrowserRouter>
@@ -20,11 +25,13 @@ function App() {
             <Route path='/login' element={<Login />} />
             <Route path='/register' element={<Register />} />
             <Route path='/product/:name' element={<ProductDetails />} />
+            <Route path='/categories' element={<CategoriesPage />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </main>
         <Footer />
+        <ToastContainer />
       </BrowserRouter>
     </div>
   );

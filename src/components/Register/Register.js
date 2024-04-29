@@ -1,7 +1,28 @@
+import axios from 'axios'
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import { Link, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const Register = () => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm()
+
+    const moveTo = useNavigate()
+
+    const userSave = (data) => {
+        if (!data) {
+            toast.error('Kindly fill the all fields!')
+        } else {
+            delete data.confirmPassword;
+            delete data.MarketingAccept;
+            data.type = 'customer'
+            axios.post('/auth/register', data)
+            moveTo('/login')
+            toast.success('Successfully Registered');
+        }
+    }
+
     return (
         <section className="bg-white">
             <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -41,7 +62,7 @@ const Register = () => {
                             quibusdam aperiam voluptatum.
                         </p>
 
-                        <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+                        <form onSubmit={handleSubmit(userSave)} className="mt-8 grid grid-cols-6 gap-6">
                             <div className="col-span-6 sm:col-span-3">
                                 <label htmlFor="FirstName" className="block text-sm font-medium text-gray-700">
                                     First Name
@@ -49,10 +70,10 @@ const Register = () => {
 
                                 <input
                                     type="text"
-                                    id="FirstName"
-                                    name="first_name"
+                                    {...register('firstName', { required: true })}
                                     className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-sm focus:outline-blue-700"
                                 />
+                                {errors.firstName ? <div className='text-red-700'>This field is required!</div> : null}
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
@@ -62,10 +83,10 @@ const Register = () => {
 
                                 <input
                                     type="text"
-                                    id="LastName"
-                                    name="last_name"
+                                    {...register('lastName', { required: true })}
                                     className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-sm focus:outline-blue-700"
                                 />
+                                {errors.lastName ? <div className='text-red-700'>This field is required!</div> : null}
                             </div>
 
                             <div className="col-span-6">
@@ -73,10 +94,10 @@ const Register = () => {
 
                                 <input
                                     type="email"
-                                    id="Email"
-                                    name="email"
+                                    {...register('email', { required: true })}
                                     className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-sm focus:outline-blue-700"
                                 />
+                                {errors.email ? <div className='text-red-700'>This field is required!</div> : null}
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
@@ -84,10 +105,10 @@ const Register = () => {
 
                                 <input
                                     type="password"
-                                    id="Password"
-                                    name="password"
+                                    {...register('password', { required: true })}
                                     className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-sm focus:outline-blue-700"
                                 />
+                                {errors.password ? <div className='text-red-700'>This field is required!</div> : null}
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">
@@ -97,20 +118,20 @@ const Register = () => {
 
                                 <input
                                     type="password"
-                                    id="PasswordConfirmation"
-                                    name="password_confirmation"
+                                    {...register('confirmPassword', { required: true })}
                                     className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-sm focus:outline-blue-700"
                                 />
+                                {errors.confirmPassword ? <div className='text-red-700'>This field is required!</div> : null}
                             </div>
 
                             <div className="col-span-6">
                                 <label htmlFor="MarketingAccept" className="flex gap-4">
                                     <input
                                         type="checkbox"
-                                        id="MarketingAccept"
-                                        name="marketing_accept"
+                                        {...register('MarketingAccept', { required: true })}
                                         className="size-5 rounded-md border-gray-200 bg-white shadow-sm"
                                     />
+                                    {errors.MarketingAccept ? <div className='text-red-700'>This field is required!</div> : null}
 
                                     <span className="text-sm text-gray-700">
                                         I want to receive emails about events, product updates and company announcements.
@@ -129,6 +150,7 @@ const Register = () => {
 
                             <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
                                 <button
+                                    type='submit'
                                     className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-sm font-medium text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
                                 >
                                     Create an account

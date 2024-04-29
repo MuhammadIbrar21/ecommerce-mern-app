@@ -1,8 +1,18 @@
 import { Link } from 'react-router-dom'
 import './Header.css'
-import { FaCartShopping, FaMagnifyingGlass } from 'react-icons/fa6'
+import { useDispatch, useSelector } from 'react-redux'
+import { setLogout } from '../../store/slices/usersSlice'
+import { MdOutlineShoppingCart } from "react-icons/md"
+import { HiMiniMagnifyingGlass } from 'react-icons/hi2'
 
 const Header = () => {
+
+    const dispatch = useDispatch();
+
+    const loggedUser = useSelector((store) => {
+        return store.users.currentUser
+    })
+
     return (
         <header className="bg-white shadow top-0 z-50 sticky">
             <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
@@ -23,7 +33,7 @@ const Header = () => {
                         <nav aria-label="Global">
                             <ul className="flex items-center gap-6 text-sm">
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Categories </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to="/categories"> Categories </Link>
                                 </li>
 
                                 <li>
@@ -47,29 +57,42 @@ const Header = () => {
                                 className="px-5 py-2.5 text-lg font-medium text-gray-800 "
                                 href="#"
                             >
-                                <FaMagnifyingGlass />
+                                <HiMiniMagnifyingGlass size={20} />
                             </a>
                             <Link
                                 className="px-5 py-2.5 text-lg font-medium text-gray-800"
                                 to="/cart"
                             >
-                                <FaCartShopping />
+                                <MdOutlineShoppingCart />
                             </Link>
-                            <Link
-                                className="bg-gray-700 px-5 py-2.5 text-sm font-medium text-white shadow"
-                                to="/login"
-                            >
-                                Login
-                            </Link>
+                            {
+                                !loggedUser ?
+                                    <>
+                                        <Link
+                                            className="bg-gray-700 px-5 py-2.5 text-sm font-medium text-white shadow"
+                                            to="/login"
+                                        >
+                                            Login
+                                        </Link>
 
-                            <div className="hidden sm:flex">
-                                <Link
-                                    className="bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
-                                    to="/register"
-                                >
-                                    Register
-                                </Link>
-                            </div>
+                                        <div className="hidden sm:flex">
+                                            <Link
+                                                className="bg-gray-100 px-5 py-2.5 text-sm font-medium text-teal-600"
+                                                to="/register"
+                                            >
+                                                Register
+                                            </Link>
+                                        </div>
+                                    </>
+                                    :
+                                    <Link
+                                        className="bg-gray-700 px-5 py-2.5 text-sm font-medium text-white shadow"
+                                        to="/login"
+                                        onClick={() => dispatch(setLogout())}
+                                    >
+                                        Logout
+                                    </Link>
+                            }
                         </div>
 
                         <div className="block md:hidden">
