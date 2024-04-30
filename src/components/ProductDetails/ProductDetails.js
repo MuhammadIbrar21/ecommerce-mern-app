@@ -2,9 +2,13 @@ import { Link, useParams } from "react-router-dom"
 import Products from "../../data"
 import { useEffect, useState } from "react"
 import { MdOutlineShoppingCart } from "react-icons/md"
+import { useDispatch } from "react-redux"
+import { addToCart } from "../../store/slices/cartSlice"
 
 const ProductDetails = () => {
     const { name } = useParams()
+
+    const dispatch = useDispatch()
 
     const [similarProduct, setSimilarProduct] = useState([]);
 
@@ -15,6 +19,10 @@ const ProductDetails = () => {
     }, [])
 
     const thisProduct = Products.find((product) => product.name === name)
+
+    const handleAddToCart = (product) => {
+        dispatch(addToCart(product))
+    }
 
     return (
         <div>
@@ -114,7 +122,7 @@ const ProductDetails = () => {
                             </button>
                         </div>
                     </div>
-                    <button className="py-4 px-8 my-4 bg-gray-700 text-white flex justify-center items-center gap-x-4 font-bold transition hover:bg-gray-800">
+                    <button className="py-4 px-8 my-4 bg-gray-700 text-white flex justify-center items-center gap-x-4 font-bold transition hover:bg-gray-800" onClick={() => handleAddToCart(thisProduct)}>
                         Add to Cart <MdOutlineShoppingCart size={20} />
                     </button>
                 </div>

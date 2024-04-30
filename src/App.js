@@ -12,8 +12,27 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CategoriesPage from './components/CategoriesPage/CategoriesPage';
 import { RequiredAuth } from './components/RequiredAuth/RequiredAuth';
+import AllProducts from './components/AllProducts/AllProducts';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setLogin } from './store/slices/usersSlice';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    axios.post('/auth/session', {
+      token: localStorage.getItem('token')
+    })
+      .then((res) => {
+        if (res.data) {
+          dispatch(setLogin(res.data))
+        }
+      })
+  }, [])
+
 
   return (
     <div id='body'>
@@ -26,6 +45,7 @@ function App() {
             <Route path='/register' element={<Register />} />
             <Route path='/product/:name' element={<ProductDetails />} />
             <Route path='/categories' element={<CategoriesPage />} />
+            <Route path='/products' element={<AllProducts />} />
             <Route path='/cart' element={<Cart />} />
             <Route path='*' element={<PageNotFound />} />
           </Routes>

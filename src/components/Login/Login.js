@@ -21,7 +21,8 @@ const Login = () => {
         axios.post('/auth/login', details)
             .then((res => {
                 if (res.data) {
-                    dispatch(setLogin(res.data))
+                    localStorage.setItem('token', res.data.token)
+                    dispatch(setLogin(res.data.userFind))
                     moveTo('/');
                     toast.success('Successfully Login')
                 } else {

@@ -5,7 +5,7 @@ const NewArrival = () => {
         <div className="my-4">
             <div className="flex justify-between w-full">
                 <div className="font-bold text-[#393d46] text-3xl px-12">New Arrivals</div>
-                <Link to='/' className="px-12 text-md font-semibold hover:text-purple-500">View all</Link>
+                <Link to='/products' className="px-12 text-md font-semibold hover:text-purple-500">View all</Link>
             </div>
             <div className="w-full flex justify-center my-8 items-center">
                 <div className="w-[45%] h-96 bg-gray-100 flex mx-4 justify-between items-center">
