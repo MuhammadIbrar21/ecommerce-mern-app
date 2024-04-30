@@ -4,14 +4,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLogout } from '../../store/slices/usersSlice'
 import { MdOutlineShoppingCart } from "react-icons/md"
 import { HiMiniMagnifyingGlass } from 'react-icons/hi2'
+import { useEffect, useState } from 'react'
 
 const Header = () => {
 
     const dispatch = useDispatch();
 
+    const [totalProduct, setTotalProduct] = useState()
+
     const loggedUser = useSelector((store) => {
         return store.users.currentUser
     })
+
+    const cartProducts = useSelector((store) => {
+        return store.cart.cartItems
+    })
+
+    useEffect(() => {
+        setTotalProduct(cartProducts.length)
+    }, [cartProducts])
 
     return (
         <header className="bg-white shadow top-0 z-50 sticky">
@@ -63,7 +74,17 @@ const Header = () => {
                                 className="px-5 py-2.5 text-lg font-medium text-gray-800"
                                 to="/cart"
                             >
-                                <MdOutlineShoppingCart />
+                                {
+                                    totalProduct < 1
+                                        ?
+                                        <MdOutlineShoppingCart />
+                                        :
+                                        <span className='relative'>
+                                            <MdOutlineShoppingCart />
+                                            <span className='absolute right-[-40%] bottom-[-40%] text-white bg-gray-700 rounded-full text-xs px-[5px]'>{cartProducts.length}</span>
+                                        </span>
+
+                                }
                             </Link>
                             {
                                 !loggedUser ?

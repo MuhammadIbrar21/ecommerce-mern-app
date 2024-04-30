@@ -2,8 +2,8 @@ import { Link, useParams } from "react-router-dom"
 import Products from "../../data"
 import { useEffect, useState } from "react"
 import { MdOutlineShoppingCart } from "react-icons/md"
-import { useDispatch } from "react-redux"
-import { addToCart } from "../../store/slices/cartSlice"
+import { useDispatch, useSelector } from "react-redux"
+import { addToCart, decrease, increase } from "../../store/slices/cartSlice"
 
 const ProductDetails = () => {
     const { name } = useParams()
@@ -13,12 +13,26 @@ const ProductDetails = () => {
     const [similarProduct, setSimilarProduct] = useState([]);
 
     const [quantity, setQuantity] = useState(1);
+    const [disabled, setDisabled] = useState(true);
 
     useEffect(() => {
         setSimilarProduct(Products.slice(0, 4));
     }, [])
 
     const thisProduct = Products.find((product) => product.name === name)
+
+    const cartProducts = useSelector((store) => {
+        return store.cart.cartItems
+    })
+
+    const productFind = cartProducts.find(product => product.name === thisProduct.name)
+
+    useEffect(() => {
+        if (productFind) {
+            setDisabled(false);
+            setQuantity(productFind.quantity)
+        }
+    }, [productFind])
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product))
@@ -105,7 +119,7 @@ const ProductDetails = () => {
                         <label htmlFor="Quantity" className="sr-only"> Quantity </label>
 
                         <div className="flex items-center rounded border border-gray-200">
-                            <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => setQuantity(quantity - 1)}>
+                            <button type="button" disabled={disabled} className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(decrease(thisProduct.name))}>
                                 &minus;
                             </button>
 
@@ -117,7 +131,7 @@ const ProductDetails = () => {
                                 className="h-10 w-16 border-transparent focus:outline-blue-600 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                             />
 
-                            <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => setQuantity(quantity + 1)}>
+                            <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(increase(thisProduct.name))}>
                                 +
                             </button>
                         </div>
