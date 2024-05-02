@@ -11,42 +11,72 @@ import Cart from './components/Cart/Cart';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import CategoriesPage from './components/CategoriesPage/CategoriesPage';
-import { RequiredAuth } from './components/RequiredAuth/RequiredAuth';
 import AllProducts from './components/AllProducts/AllProducts';
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { setLogin } from './store/slices/usersSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { setLogin, setLogout } from './store/slices/usersSlice';
+import AdminHeader from './components/Admin/AdminHeader/AdminHeader';
+import Users from './components/Admin/Users/Users'
+import AdminHome from './components/Admin/AdminHome/AdminHome';
 
 function App() {
 
+  const [role, setRole] = useState('customer');
+
   const dispatch = useDispatch();
 
+  const loggedUser = useSelector((store) => {
+    return store.users.currentUser
+  })
+
   useEffect(() => {
-    axios.post('/auth/session', {
-      token: localStorage.getItem('token')
-    })
-      .then((res) => {
+    if (JSON.parse(localStorage.getItem('isChecked')) === true) {
+      axios.post('/auth/session', {
+        token: localStorage.getItem('token')
+      }).then((res) => {
         if (res.data) {
+          setRole(res.data.type)
           dispatch(setLogin(res.data))
         }
       })
+    } else {
+      dispatch(setLogout())
+    }
+
   }, [])
 
+  useEffect(() => {
+    if (loggedUser) {
+      setRole(loggedUser.type)
+    }
+  }, [loggedUser])
 
   return (
     <div id='body'>
       <BrowserRouter>
-        <Header />
+        {role === 'customer' && <Header />}
+        {role === 'admin' && <AdminHeader />}
         <main>
           <Routes>
-            <Route path='/' element={<Home />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/product/:name' element={<ProductDetails />} />
-            <Route path='/categories' element={<CategoriesPage />} />
-            <Route path='/products' element={<AllProducts />} />
-            <Route path='/cart' element={<Cart />} />
+            {role === 'customer' && <>
+              <Route path='/' element={<Home />} />
+              <Route path='/login' element={<Login />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/product/:name' element={<ProductDetails />} />
+              <Route path='/categories' element={<CategoriesPage />} />
+              <Route path='/products' element={<AllProducts />} />
+              <Route path='/cart' element={<Cart />} />
+            </>
+            }
+            {
+              role === 'admin' && <>
+                <Route path='/' element={<AdminHome />} />
+                <Route path='/login' element={<Login />} />
+                <Route path='/register' element={<Register />} />
+                <Route path='/users' element={<Users />} />
+              </>
+            }
             <Route path='*' element={<PageNotFound />} />
           </Routes>
         </main>

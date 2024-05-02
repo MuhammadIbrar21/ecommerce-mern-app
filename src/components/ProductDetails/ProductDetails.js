@@ -19,20 +19,31 @@ const ProductDetails = () => {
         setSimilarProduct(Products.slice(0, 4));
     }, [])
 
-    const thisProduct = Products.find((product) => product.name === name)
+    const productAvailable = Products.find((product) => product.name === name)
+    let thisProduct = { ...productAvailable, quantity: 1 }
 
     const cartProducts = useSelector((store) => {
         return store.cart.cartItems
     })
 
-    const productFind = cartProducts.find(product => product.name === thisProduct.name)
 
     useEffect(() => {
-        if (productFind) {
-            setDisabled(false);
-            setQuantity(productFind.quantity)
+
+        let productFind
+
+        if (cartProducts) {
+            productFind = cartProducts.find(product => product.name === thisProduct.name)
         }
-    }, [productFind])
+
+        if (productFind == undefined) {
+            setQuantity(1)
+            setDisabled(true);
+        } else {
+            setQuantity(productFind.quantity)
+            setDisabled(false);
+        }
+
+    }, [cartProducts])
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product))
@@ -84,7 +95,7 @@ const ProductDetails = () => {
                             </li>
 
                             <li>
-                                <a href="#" className="block transition hover:text-gray-700"> Shirts </a>
+                                <Link to="/products" className="block transition hover:text-gray-700"> Shirts </Link>
                             </li>
 
                             <li className="rtl:rotate-180">
@@ -103,7 +114,7 @@ const ProductDetails = () => {
                             </li>
 
                             <li>
-                                <a href="#" className="block transition hover:text-gray-700"> {thisProduct.name} </a>
+                                <Link to={`/product/${thisProduct.name}`} className="block transition hover:text-gray-700"> {thisProduct.name} </Link>
                             </li>
                         </ol>
                     </nav>

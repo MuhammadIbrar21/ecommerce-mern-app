@@ -1,55 +1,26 @@
-import axios from "axios";
-import { jwtDecode } from "jwt-decode";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
-export const RequiredAuth = ({ child }) => {
+export default ({ children }) => {
 
-    // Logout if token.exp is in the past (expired)
-    const payload = getTokenPayload();
-
-    const navigate = useNavigate();
-
-    if (payload && payload.exp && payload.exp <= Date.now() / 1000) {
-        applyToken(null);
-        navigate("/login");
-        return null;
-    }
-
-    if (!getToken()) {
-        return navigate('/login');
-    } else {
-        return child;
-    }
-};
-
-const applyToken = (token) => {
-
-    if (token) {
-
-        localStorage.setItem("access_token", token);
-        axios.interceptors.request.use(
-            (config) => {
-                config.headers["Authorization"] = `Bearer ${token}`;
-                return config;
-            },
-            (error) => {
-                return Promise.reject(error);
-            }
-        );
+    if (localStorage.getItem('isChecked') === true && !localStorage.getItem('token')) {
+        toast.error('Please Login to access this page!', {
+            position: 'bottom-right'
+        })
+        return <Navigate to='/login' />
 
     } else {
-        localStorage.removeItem("access_token");
-        delete axios.defaults.headers.common.Authorization;
+        if (!localStorage.getItem('isChecked') || localStorage.getItem('isChecked') == false) {
+            toast.error('Please Login to access this page!', {
+                position: 'bottom-right'
+            })
+            return <Navigate to='/login' />
+        } else {
+            return <>
+                {children}
+            </>
+        }
+
     }
-};
 
-const getTokenPayload = () => {
-    const token = getToken();
-    if (!token) return null;
-
-    return jwtDecode(token);
-};
-
-const getToken = () => {
-    return localStorage.getItem("access_token");
-};
+}

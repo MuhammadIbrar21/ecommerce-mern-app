@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import RequiredAuth from '../RequiredAuth/RequiredAuth'
 
 const NewArrival = () => {
     return (
@@ -55,4 +56,8 @@ const NewArrival = () => {
     )
 }
 
-export default NewArrival
+export default () => {
+    return <RequiredAuth>
+        <NewArrival />
+    </RequiredAuth>
+}

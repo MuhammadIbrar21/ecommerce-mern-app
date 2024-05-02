@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { calculateTotals, clearCart, decrease, increase, removeItem } from "../../store/slices/cartSlice"
-import { store } from "../../store/store"
 import { useEffect } from "react"
+import RequiredAuth from "../RequiredAuth/RequiredAuth"
 
 const Cart = () => {
     const dispatch = useDispatch()
@@ -13,6 +13,7 @@ const Cart = () => {
     useEffect(() => {
         if (Products) {
             dispatch(calculateTotals())
+            localStorage.setItem('cartItems', JSON.stringify(Products))
         }
     }, [Products])
 
@@ -144,13 +145,12 @@ const Cart = () => {
                                                 </div>
 
                                                 <div className="flex justify-end">
-                                                    <a
-                                                        href="#"
+                                                    <button
                                                         className="block rounded bg-gray-700 px-5 py-3 text-sm text-gray-100 transition hover:bg-gray-600"
                                                         onClick={() => dispatch(clearCart())}
                                                     >
                                                         Checkout
-                                                    </a>
+                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
@@ -165,4 +165,8 @@ const Cart = () => {
     )
 }
 
-export default Cart
+export default () => {
+    return <RequiredAuth>
+        <Cart />
+    </RequiredAuth>
+}

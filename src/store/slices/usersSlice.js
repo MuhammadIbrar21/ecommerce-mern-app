@@ -1,4 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { Navigate } from "react-router-dom";
 
 export const users = createSlice({
     name: 'users',
@@ -12,6 +13,8 @@ export const users = createSlice({
         setLogout: (state, action) => {
             state.currentUser = null;
             localStorage.removeItem('token');
+            <Navigate to='/login' />
+            localStorage.removeItem('isChecked');
         }
     }
 })

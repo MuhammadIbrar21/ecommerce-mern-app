@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLogout } from '../../store/slices/usersSlice'
+import { setLogout } from '../../../store/slices/usersSlice'
 import { MdOutlineShoppingCart } from "react-icons/md"
 import { HiMiniMagnifyingGlass } from 'react-icons/hi2'
 
@@ -32,7 +32,7 @@ const AdminHeader = () => {
                         <nav aria-label="Global">
                             <ul className="flex items-center gap-6 text-sm">
                                 <li>
-                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to="/categories"> Users </Link>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to="/users"> Users </Link>
                                 </li>
 
                                 <li>
@@ -40,11 +40,11 @@ const AdminHeader = () => {
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Categories </a>
+                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Add Product </a>
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Collections </a>
+                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Contact Info </a>
                                 </li>
                             </ul>
                         </nav>
@@ -52,18 +52,6 @@ const AdminHeader = () => {
 
                     <div className="flex items-center gap-4">
                         <div className="sm:flex sm:gap-4">
-                            <a
-                                className="px-5 py-2.5 text-lg font-medium text-gray-800 "
-                                href="#"
-                            >
-                                <HiMiniMagnifyingGlass size={20} />
-                            </a>
-                            <Link
-                                className="px-5 py-2.5 text-lg font-medium text-gray-800"
-                                to="/cart"
-                            >
-                                <MdOutlineShoppingCart />
-                            </Link>
                             {
                                 !loggedUser ?
                                     <>

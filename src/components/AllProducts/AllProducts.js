@@ -3,6 +3,7 @@ import FilterByCat from "../Filter/FilterByCat"
 import FilterByPrice from "../Filter/FilterByPrice"
 import FilterByRating from '../Filter/FilterByRating'
 import Products from '../../data'
+import RequiredAuth from '../RequiredAuth/RequiredAuth'
 
 const AllProducts = () => {
     return (
@@ -155,4 +156,8 @@ const AllProducts = () => {
     )
 }
 
-export default AllProducts
+export default () => {
+    return <RequiredAuth>
+        <AllProducts />
+    </RequiredAuth>
+}

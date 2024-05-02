@@ -48,15 +48,15 @@ const Header = () => {
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> New Arrival </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to='/products'> New Arrival </Link>
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Features </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to='/products'> Features </Link>
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Collections </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to='/products'> Collections </Link>
                                 </li>
                             </ul>
                         </nav>
@@ -64,12 +64,12 @@ const Header = () => {
 
                     <div className="flex items-center gap-4">
                         <div className="sm:flex sm:gap-4">
-                            <a
+                            <Link
                                 className="px-5 py-2.5 text-lg font-medium text-gray-800 "
-                                href="#"
+                                to='/'
                             >
                                 <HiMiniMagnifyingGlass size={20} />
-                            </a>
+                            </Link>
                             <Link
                                 className="px-5 py-2.5 text-lg font-medium text-gray-800"
                                 to="/cart"

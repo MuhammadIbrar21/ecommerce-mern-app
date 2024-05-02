@@ -7,7 +7,7 @@ const Popular = () => {
         <div className="my-8">
             <div className="flex justify-between w-full">
                 <div className="font-bold text-[#393d46] text-3xl px-12">Popular This Week</div>
-                <Link to='/' className="px-12 text-md font-semibold hover:text-purple-500">View all</Link>
+                <Link to='/products' className="px-12 text-md font-semibold hover:text-purple-500">View all</Link>
             </div>
             <div className="w-[92%] m-auto my-8 gap-y-4 flex-wrap flex justify-between items-center">
                 {

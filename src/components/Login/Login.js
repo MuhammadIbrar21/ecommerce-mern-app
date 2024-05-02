@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineTwitter } from "react-icons/ai";
 import { BiLogoFacebook } from "react-icons/bi";
@@ -13,15 +13,24 @@ const Login = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm()
 
+    const [isChecked, setIsChecked] = useState(false);
+
     const moveTo = useNavigate()
 
     const dispatch = useDispatch()
 
     const checkLogin = (details) => {
+        details.isChecked = isChecked;
         axios.post('/auth/login', details)
             .then((res => {
                 if (res.data) {
-                    localStorage.setItem('token', res.data.token)
+                    if (isChecked == true) {
+                        localStorage.setItem('token', res.data.token)
+                        localStorage.setItem('isChecked', isChecked)
+                    } else {
+                        localStorage.removeItem('token');
+                        localStorage.setItem('isChecked', isChecked)
+                    }
                     dispatch(setLogin(res.data.userFind))
                     moveTo('/');
                     toast.success('Successfully Login')
@@ -92,7 +101,7 @@ const Login = () => {
                     {errors.password ? <div className='text-red-700'>This field is required!</div> : null}
                     <div className="mt-4 flex justify-between font-semibold text-sm">
                         <label className="flex text-slate-500 hover:text-slate-600 cursor-pointer">
-                            <input className="mr-1" type="checkbox" />
+                            <input className="mr-1" type="checkbox" id="remember" checked={isChecked} onChange={() => setIsChecked(!isChecked)} />
                             <span>Remember Me</span>
                         </label>
                         <a

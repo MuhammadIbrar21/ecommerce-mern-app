@@ -73,7 +73,7 @@ const Register = () => {
                                     {...register('firstName', { required: true })}
                                     className="mt-1 p-2 w-full rounded-md border border-gray-300 bg-white text-sm text-gray-700 shadow-sm focus:outline-blue-700"
                                 />
-                                {errors.firstName ? <div className='text-red-700'>This field is required!</div> : null}
+                                {errors.firstName && errors.firstName.type == 'required' ? <div className='text-red-700'>This field is required!</div> : null}
                             </div>
 
                             <div className="col-span-6 sm:col-span-3">

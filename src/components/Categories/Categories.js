@@ -2,6 +2,7 @@ import { IoBagHandleOutline, IoShirtOutline } from "react-icons/io5"
 import { PiDress, PiPantsLight } from "react-icons/pi"
 import { TbJacket, TbShoe } from "react-icons/tb"
 import { Link } from "react-router-dom"
+import RequiredAuth from "../RequiredAuth/RequiredAuth"
 
 const Categories = () => {
     return (
@@ -40,4 +41,8 @@ const Categories = () => {
     )
 }
 
-export default Categories
+export default () => {
+    return <RequiredAuth>
+        <Categories />
+    </RequiredAuth>
+}
