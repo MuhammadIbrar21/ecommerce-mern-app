@@ -15,16 +15,16 @@ const FilterByCat = () => {
                         <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><TbJacket />Jacket</Link>
                     </li>
                     <li >
-                        <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><IoShirtOutline />Shirt</Link>
+                        <Link to='/shirts' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><IoShirtOutline />Shirt</Link>
                     </li>
                     <li >
-                        <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><PiPantsLight />Pants</Link>
+                        <Link to='/pants' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><PiPantsLight />Pants</Link>
                     </li>
                     <li >
-                        <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><TbShoe />Shoes</Link>
+                        <Link to='/shoes' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><TbShoe />Shoes</Link>
                     </li>
                     <li >
-                        <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><PiDress />Dress</Link>
+                        <Link to='/dress' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><PiDress />Dress</Link>
                     </li>
                     <li >
                         <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><IoBagHandleOutline />Accesories</Link>

@@ -31,7 +31,7 @@ const Cart = () => {
 
                     <div className="mt-8">
                         {
-                            Products.lenght == 0 ? (
+                            Products.lenght < 0 ? (
                                 <div className="w-full h-[100px] bg-green-400">Your Cart is Empty</div>
                             )
                                 : (
@@ -41,7 +41,7 @@ const Cart = () => {
                                                 Products.map((product, ind) => (
                                                     <li key={ind} className="flex items-center gap-4">
                                                         <img
-                                                            src={`/${product.img}`}
+                                                            src={`/${product.category}-${product.name}${product.images}`}
                                                             alt={product.name}
                                                             className="size-20 rounded object-cover"
                                                         />
@@ -67,7 +67,7 @@ const Cart = () => {
                                                                 <label htmlFor="Quantity" className="sr-only"> Quantity </label>
 
                                                                 <div className="flex items-center rounded border border-gray-200">
-                                                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(decrease(product.name))}>
+                                                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(decrease(product._id))}>
                                                                         &minus;
                                                                     </button>
 
@@ -79,14 +79,14 @@ const Cart = () => {
                                                                         className="h-10 w-16 border-transparent focus:outline-blue-600 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                                                                     />
 
-                                                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(increase(product.name))}>
+                                                                    <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(increase(product._id))}>
                                                                         +
                                                                     </button>
                                                                 </div>
                                                             </div>
 
                                                             <button className="text-gray-600 transition hover:text-red-600"
-                                                                onClick={() => dispatch(removeItem(product.name))}
+                                                                onClick={() => dispatch(removeItem(product._id))}
                                                             >
                                                                 <span className="sr-only">Remove item</span>
 

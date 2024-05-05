@@ -66,7 +66,7 @@ const CategoriesPage = () => {
                         </div>
                     </Link>
 
-                    <Link to='/' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/shirts' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <IoShirtOutline size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Shirt</div>
@@ -74,7 +74,7 @@ const CategoriesPage = () => {
                         </div>
                     </Link>
 
-                    <Link to='/' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/pants' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <PiPantsLight size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Pants</div>
@@ -82,7 +82,7 @@ const CategoriesPage = () => {
                         </div>
                     </Link>
 
-                    <Link to='/' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/shoes' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <TbShoe size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Shoes</div>
@@ -90,7 +90,7 @@ const CategoriesPage = () => {
                         </div>
                     </Link>
 
-                    <Link to='/' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/dress' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <PiDress size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Dress</div>
@@ -114,6 +114,6 @@ const CategoriesPage = () => {
 
 export default () => {
     return <RequiredAuth>
-        <CategoriesPage />
+        <CategoriesPage />a
     </RequiredAuth>
 }

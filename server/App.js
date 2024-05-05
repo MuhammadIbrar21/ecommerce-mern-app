@@ -5,11 +5,13 @@ require('./db/db');
 
 const app = express();
 app.use(express.json());
-const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3040;
 
 app.use('/auth', authRoutes);
 
 app.use('/admin', adminRoutes);
+
+app.use(express.static('./server/productImages'))
 
 app.listen(port, () => {
     console.log(`Server is connected at port ${port}`);

@@ -1,12 +1,15 @@
 import { Link, useParams } from "react-router-dom"
-import Products from "../../data"
 import { useEffect, useState } from "react"
 import { MdOutlineShoppingCart } from "react-icons/md"
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart, decrease, increase } from "../../store/slices/cartSlice"
 
 const ProductDetails = () => {
-    const { name } = useParams()
+    const { _id } = useParams()
+
+    let Products = useSelector((store) => {
+        return store.products.products
+    })
 
     const dispatch = useDispatch()
 
@@ -15,24 +18,25 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [disabled, setDisabled] = useState(true);
 
-    useEffect(() => {
-        setSimilarProduct(Products.slice(0, 4));
-    }, [])
 
-    const productAvailable = Products.find((product) => product.name === name)
+    const productAvailable = Products.find((product) => product._id === _id)
     let thisProduct = { ...productAvailable, quantity: 1 }
 
     const cartProducts = useSelector((store) => {
         return store.cart.cartItems
     })
 
+    useEffect(() => {
+        let sameCategory = Products.filter((product) => product.category === thisProduct.category)
+        setSimilarProduct(sameCategory.slice(0, 4));
+    }, [])
 
     useEffect(() => {
 
         let productFind
 
         if (cartProducts) {
-            productFind = cartProducts.find(product => product.name === thisProduct.name)
+            productFind = cartProducts.find(product => product._id === thisProduct._id)
         }
 
         if (productFind == undefined) {
@@ -53,7 +57,7 @@ const ProductDetails = () => {
         <div>
             <div className="w-full my-4 flex justify-center items-center gap-8">
                 <div>
-                    <img className="max-h-[40vw]" src={`/${thisProduct.img}`} />
+                    <img className="max-h-[40vw]" src={`/${thisProduct.category}-${thisProduct.name}${thisProduct.images}`} />
                 </div>
                 <div className="h-[89vh] max-w-[35%] relative flex flex-col justify-start items-start">
                     <nav aria-label="Breadcrumb">
@@ -95,7 +99,7 @@ const ProductDetails = () => {
                             </li>
 
                             <li>
-                                <Link to="/products" className="block transition hover:text-gray-700"> Shirts </Link>
+                                <Link to="/products" className="first-letter:uppercase block transition hover:text-gray-700"> {thisProduct.category} </Link>
                             </li>
 
                             <li className="rtl:rotate-180">
@@ -130,7 +134,7 @@ const ProductDetails = () => {
                         <label htmlFor="Quantity" className="sr-only"> Quantity </label>
 
                         <div className="flex items-center rounded border border-gray-200">
-                            <button type="button" disabled={disabled} className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(decrease(thisProduct.name))}>
+                            <button type="button" disabled={disabled} className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(decrease(thisProduct._id))}>
                                 &minus;
                             </button>
 
@@ -142,7 +146,7 @@ const ProductDetails = () => {
                                 className="h-10 w-16 border-transparent focus:outline-blue-600 text-center [-moz-appearance:_textfield] sm:text-sm [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                             />
 
-                            <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(increase(thisProduct.name))}>
+                            <button type="button" className="size-10 leading-10 text-gray-600 transition hover:opacity-75" onClick={() => dispatch(increase(thisProduct._id))}>
                                 +
                             </button>
                         </div>
@@ -161,7 +165,7 @@ const ProductDetails = () => {
                     {
                         similarProduct.map((product, ind) => {
                             return <Link key={ind} to={`/product/${product.name}`} className='group w-[25%] h-[300px] my-4 flex justify-center items-center flex-col hover:border-[1.5px]'>
-                                <img className='w-[40%]' src={`/${product.img}`} />
+                                <img className='w-[40%]' src={`/${product.category}-${product.name}${product.images}`} />
                                 <div className='text-gray-800 font-semibold py-2 group-hover:underline'>{product.name}</div>
                                 <div className='text-gray-500 text-xs'>Rs.{(product.price).toLocaleString()}.00</div>
                             </Link>

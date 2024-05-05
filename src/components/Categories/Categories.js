@@ -16,19 +16,19 @@ const Categories = () => {
                     <TbJacket size={52} />
                     <div className="text-xs mt-4">Jacket</div>
                 </Link>
-                <Link to='/' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/shirts' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <IoShirtOutline size={52} />
                     <div className="text-xs mt-4">Shirt</div>
                 </Link>
-                <Link to='/' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/pants' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <PiPantsLight size={52} />
                     <div className="text-xs mt-4">Pants</div>
                 </Link>
-                <Link to='/' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/shoes' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <TbShoe size={52} />
                     <div className="text-xs mt-4">Shoes</div>
                 </Link>
-                <Link to='/' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/dress' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <PiDress size={52} />
                     <div className="text-xs mt-4">Dress</div>
                 </Link>

@@ -36,15 +36,15 @@ const AdminHeader = () => {
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Products </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to="/allproducts"> Products </Link>
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Add Product </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to="/addproducts"> Add Product </Link>
                                 </li>
 
                                 <li>
-                                    <a className="text-gray-500 transition hover:text-gray-500/75" href="#"> Contact Info </a>
+                                    <Link className="text-gray-500 transition hover:text-gray-500/75" to="/contactinfo"> Contact Info </Link>
                                 </li>
                             </ul>
                         </nav>

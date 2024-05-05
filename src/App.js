@@ -19,6 +19,14 @@ import { setLogin, setLogout } from './store/slices/usersSlice';
 import AdminHeader from './components/Admin/AdminHeader/AdminHeader';
 import Users from './components/Admin/Users/Users'
 import AdminHome from './components/Admin/AdminHome/AdminHome';
+import AdminProducts from './components/Admin/AdminProducts/AdminProducts';
+import AddProducts from './components/Admin/AddProducts/AddProducts';
+import ContactInfo from './components/Admin/ContactInfo/ContactInfo';
+import { setProducts } from './store/slices/productsSlice';
+import Shirts from './components/Shirts/Shirts';
+import Shoes from './components/Shoes/Shoes';
+import Dress from './components/Dress/Dress';
+import Pants from './components/Pants/Pants';
 
 function App() {
 
@@ -52,6 +60,14 @@ function App() {
     }
   }, [loggedUser])
 
+  useEffect(() => {
+    axios.get('/admin/products').then((res) => {
+      dispatch(setProducts(res.data))
+    }).catch((err) => {
+      console.log(err);
+    })
+  }, [])
+
   return (
     <div id='body'>
       <BrowserRouter>
@@ -63,9 +79,13 @@ function App() {
               <Route path='/' element={<Home />} />
               <Route path='/login' element={<Login />} />
               <Route path='/register' element={<Register />} />
-              <Route path='/product/:name' element={<ProductDetails />} />
+              <Route path='/product/:_id' element={<ProductDetails />} />
               <Route path='/categories' element={<CategoriesPage />} />
               <Route path='/products' element={<AllProducts />} />
+              <Route path='/shirts' element={<Shirts />} />
+              <Route path='/shoes' element={<Shoes />} />
+              <Route path='/dress' element={<Dress />} />
+              <Route path='/pants' element={<Pants />} />
               <Route path='/cart' element={<Cart />} />
             </>
             }
@@ -74,6 +94,9 @@ function App() {
                 <Route path='/' element={<AdminHome />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/register' element={<Register />} />
+                <Route path='/allproducts' element={<AdminProducts />} />
+                <Route path='/addproducts' element={<AddProducts />} />
+                <Route path='/contactinfo' element={<ContactInfo />} />
                 <Route path='/users' element={<Users />} />
               </>
             }

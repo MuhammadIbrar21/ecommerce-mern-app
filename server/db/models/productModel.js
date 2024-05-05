@@ -1,11 +1,23 @@
-const { type } = require('@testing-library/user-event/dist/type');
 const mongoose = require('mongoose');
-const validator = require('validator');
 
 const productSchema = mongoose.Schema({
-    name: String,
-    price: Number,
+    name: {
+        type: String,
+        required: true
+    },
+    price: {
+        type: Number,
+        required: true
+    },
     totalQuantity: Number,
-    type: String,
+    category: {
+        type: String,
+        lowercase: true,
+        required: true,
+    },
     images: String
 })
+
+const Product = new mongoose.model('Product', productSchema)
+
+module.exports = Product

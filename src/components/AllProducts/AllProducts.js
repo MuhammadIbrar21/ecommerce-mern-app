@@ -2,10 +2,15 @@ import { Link } from 'react-router-dom'
 import FilterByCat from "../Filter/FilterByCat"
 import FilterByPrice from "../Filter/FilterByPrice"
 import FilterByRating from '../Filter/FilterByRating'
-import Products from '../../data'
 import RequiredAuth from '../RequiredAuth/RequiredAuth'
+import { useSelector } from 'react-redux'
 
 const AllProducts = () => {
+
+    let Products = useSelector((store) => {
+        return store.products.products
+    })
+
     return (
         <div>
             <div className="flex justify-center items-start mx-8 flex-col">
@@ -64,7 +69,7 @@ const AllProducts = () => {
                         <FilterByRating />
 
                     </div>
-                    <div className='w-[80%]'>
+                    <div className='w-[80%] mb-4'>
                         <div className='font-semibold mb-4 text-sm flex justify-between'>
                             <div className='text-gray-400 '>
                                 Viewing <span className='text-[#393d46]'>20</span> of <span className='text-[#393d46]'>160 product</span>
@@ -141,10 +146,10 @@ const AllProducts = () => {
                         <div className='w-full flex justify-start items-center flex-wrap gap-y-4'>
                             {
                                 Products.map((product, ind) => (
-                                    <Link to={`/product/${product.name}`} key={ind} className='w-[20%] h-[300px] group flex flex-col justify-start items-center hover:shadow'>
-                                        <img className='w-[90%]' src={`/${product.img}`} alt={product.name} />
-                                        <div className='text-lg font-semibold pt-2 group-hover:underline'>{product.name}</div>
-                                        <div className='text-gray-500 text-sm'>Rs.{product.price}</div>
+                                    <Link to={`/product/${product._id}`} key={ind} className='w-[20%] h-[305px] group flex flex-col justify-start items-center hover:shadow'>
+                                        <img className='w-[90%]' src={`/${product.category}-${product.name}${product.images}`} alt={product.name} />
+                                        <div className='w-[90%] text-sm text-center font-semibold pt-2 group-hover:underline'>{product.name}</div>
+                                        <div className='text-gray-500 py-2 text-sm'>Rs.{(product.price).toLocaleString()}</div>
                                     </Link>
                                 ))
                             }
