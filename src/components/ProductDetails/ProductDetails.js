@@ -18,7 +18,6 @@ const ProductDetails = () => {
     const [quantity, setQuantity] = useState(1);
     const [disabled, setDisabled] = useState(true);
 
-
     const productAvailable = Products.find((product) => product._id === _id)
     let thisProduct = { ...productAvailable, quantity: 1 }
 
@@ -99,7 +98,7 @@ const ProductDetails = () => {
                             </li>
 
                             <li>
-                                <Link to="/products" className="first-letter:uppercase block transition hover:text-gray-700"> {thisProduct.category} </Link>
+                                <Link to={`/${thisProduct.category}`} className="first-letter:uppercase block transition hover:text-gray-700"> {thisProduct.category} </Link>
                             </li>
 
                             <li className="rtl:rotate-180">
@@ -118,7 +117,7 @@ const ProductDetails = () => {
                             </li>
 
                             <li>
-                                <Link to={`/product/${thisProduct.name}`} className="block transition hover:text-gray-700"> {thisProduct.name} </Link>
+                                <Link to={`/product/${thisProduct._id}`} className="block transition hover:text-gray-700"> {thisProduct.name} </Link>
                             </li>
                         </ol>
                     </nav>

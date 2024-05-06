@@ -12,15 +12,15 @@ const Categories = () => {
                 <Link to='/categories' className="px-12 text-md font-semibold hover:text-purple-500">View all</Link>
             </div>
             <div className="w-full flex justify-around my-8 items-center">
-                <Link to='/' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/jacket' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <TbJacket size={52} />
                     <div className="text-xs mt-4">Jacket</div>
                 </Link>
-                <Link to='/shirts' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/shirt' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <IoShirtOutline size={52} />
                     <div className="text-xs mt-4">Shirt</div>
                 </Link>
-                <Link to='/pants' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
+                <Link to='/pant' className="w-44 h-44 bg-gray-100 flex justify-center items-center flex-col group hover:bg-gray-700 hover:text-white">
                     <PiPantsLight size={52} />
                     <div className="text-xs mt-4">Pants</div>
                 </Link>

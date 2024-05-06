@@ -58,7 +58,7 @@ const CategoriesPage = () => {
 
                 <div className="w-full flex flex-wrap justify-around gap-y-6 my-8 items-center">
 
-                    <Link to='/' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/jacket' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <TbJacket size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Jacket</div>
@@ -66,7 +66,7 @@ const CategoriesPage = () => {
                         </div>
                     </Link>
 
-                    <Link to='/shirts' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/shirt' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <IoShirtOutline size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Shirt</div>
@@ -74,7 +74,7 @@ const CategoriesPage = () => {
                         </div>
                     </Link>
 
-                    <Link to='/pants' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
+                    <Link to='/pant' className="w-[48%] h-44 gap-4 bg-gray-100 flex justify-center items-center group hover:bg-gray-700 hover:text-white">
                         <PiPantsLight size={90} />
                         <div className="flex justify-center items-start flex-col">
                             <div className="text-2xl font-bold text-[#393d46] mt-4 group-hover:text-white">Pants</div>

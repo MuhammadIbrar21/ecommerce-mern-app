@@ -5,13 +5,13 @@ import FilterByRating from '../Filter/FilterByRating'
 import RequiredAuth from '../RequiredAuth/RequiredAuth'
 import { useSelector } from 'react-redux'
 
-const Dress = () => {
+const Jacket = () => {
 
     let allProducts = useSelector((store) => {
         return store.products.products
     })
 
-    let Products = allProducts.filter((product) => product.category === 'dress')
+    let Products = allProducts.filter((product) => product.category === 'jacket')
 
     return (
         <div>
@@ -56,7 +56,7 @@ const Dress = () => {
                             </li>
 
                             <li>
-                                <Link to="/dress" className="block font-semibold transition hover:text-gray-700"> Dress </Link>
+                                <Link to="/jacket" className="block font-semibold transition hover:text-gray-700"> Jacket </Link>
                             </li>
                         </ol>
                     </nav>
@@ -165,6 +165,6 @@ const Dress = () => {
 
 export default () => {
     return <RequiredAuth>
-        <Dress />
+        <Jacket />
     </RequiredAuth>
 }

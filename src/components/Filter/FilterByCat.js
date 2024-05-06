@@ -12,13 +12,13 @@ const FilterByCat = () => {
             <nav className="w-full">
                 <ul>
                     <li >
-                        <Link className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><TbJacket />Jacket</Link>
+                        <Link to='/jacket' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><TbJacket />Jacket</Link>
                     </li>
                     <li >
-                        <Link to='/shirts' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><IoShirtOutline />Shirt</Link>
+                        <Link to='/shirt' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><IoShirtOutline />Shirt</Link>
                     </li>
                     <li >
-                        <Link to='/pants' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><PiPantsLight />Pants</Link>
+                        <Link to='/pant' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><PiPantsLight />Pants</Link>
                     </li>
                     <li >
                         <Link to='/shoes' className="w-full flex justify-start items-center gap-2 h-[3vw] text-gray-400 transition hover:text-[#393d46]"><TbShoe />Shoes</Link>

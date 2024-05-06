@@ -54,7 +54,7 @@ const AllProducts = () => {
                             </li>
 
                             <li>
-                                <a href="#" className="block font-semibold transition hover:text-gray-700"> Product List </a>
+                                <Link to="/products" className="block font-semibold transition hover:text-gray-700"> Product List </Link>
                             </li>
                         </ol>
                     </nav>
@@ -147,7 +147,7 @@ const AllProducts = () => {
                             {
                                 Products.map((product, ind) => (
                                     <Link to={`/product/${product._id}`} key={ind} className='w-[20%] h-[305px] group flex flex-col justify-start items-center hover:shadow'>
-                                        <img className='w-[90%]' src={`/${product.category}-${product.name}${product.images}`} alt={product.name} />
+                                        <img className='w-[90%] h-[70%]' src={`/${product.category}-${product.name}${product.images}`} alt={product.name} />
                                         <div className='w-[90%] text-sm text-center font-semibold pt-2 group-hover:underline'>{product.name}</div>
                                         <div className='text-gray-500 py-2 text-sm'>Rs.{(product.price).toLocaleString()}</div>
                                     </Link>

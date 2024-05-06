@@ -56,7 +56,7 @@ const Shoes = () => {
                             </li>
 
                             <li>
-                                <a href="#" className="block font-semibold transition hover:text-gray-700"> Shoes </a>
+                                <Link to="/shoes" className="block font-semibold transition hover:text-gray-700"> Shoes </Link>
                             </li>
                         </ol>
                     </nav>

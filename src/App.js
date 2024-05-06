@@ -27,6 +27,7 @@ import Shirts from './components/Shirts/Shirts';
 import Shoes from './components/Shoes/Shoes';
 import Dress from './components/Dress/Dress';
 import Pants from './components/Pants/Pants';
+import Jacket from './components/Jacket/Jacket';
 
 function App() {
 
@@ -82,10 +83,11 @@ function App() {
               <Route path='/product/:_id' element={<ProductDetails />} />
               <Route path='/categories' element={<CategoriesPage />} />
               <Route path='/products' element={<AllProducts />} />
-              <Route path='/shirts' element={<Shirts />} />
+              <Route path='/shirt' element={<Shirts />} />
               <Route path='/shoes' element={<Shoes />} />
               <Route path='/dress' element={<Dress />} />
-              <Route path='/pants' element={<Pants />} />
+              <Route path='/pant' element={<Pants />} />
+              <Route path='/jacket' element={<Jacket />} />
               <Route path='/cart' element={<Cart />} />
             </>
             }
